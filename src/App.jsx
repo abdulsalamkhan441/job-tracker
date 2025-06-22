@@ -31,9 +31,8 @@ export default function App() {
   const [aiAdvice, setAiAdvice] = useState("");
   const [isLoadingAdvice, setIsLoadingAdvice] = useState(false);
 
-  const REACT_APP_OPENAI_KEY =
-    "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";
-
+    
+  const openaiKey = import.meta.env.VITE_OPENAI_KEY;
   useEffect(() => saveJobsToStorage(jobs), [jobs]);
   useEffect(() => saveProfileToStorage(profile), [profile]);
 
