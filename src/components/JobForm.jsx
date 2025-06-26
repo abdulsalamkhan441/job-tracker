@@ -8,6 +8,7 @@ export default function JobForm({ addJob }) {
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("Applied");
   const [website, setWebsite] = useState(""); 
+  const [detail, setDetail] = useState(""); // Add this line
 
   const handleSubmit = () => {
     if (!company || !position) return;
@@ -16,7 +17,8 @@ export default function JobForm({ addJob }) {
       company,
       position,
       status,
-      website, 
+      website,
+      detail, // Add this line
       date: new Date().toISOString().split("T")[0],
     };
     addJob(newJob);
@@ -24,6 +26,7 @@ export default function JobForm({ addJob }) {
     setPosition("");
     setStatus("Applied");
     setWebsite("");
+    setDetail(""); // Reset detail
   };
 
   return (
@@ -55,6 +58,12 @@ export default function JobForm({ addJob }) {
           <option key={s} className="bg-[#11212D]">{s}</option>
         ))}
       </select>
+      <input
+        value={detail}
+        onChange={(e) => setDetail(e.target.value)}
+        placeholder="Detail (optional)"
+        className="bg-[#11212D] border border-[#4A6C6A] text-[#CCDDCF] p-2 rounded focus:outline-none focus:ring-1 focus:ring-[#259745] placeholder-[#9BA8AB] md:col-span-4"
+      />
       <button
         onClick={handleSubmit}
         className="md:col-span-4 bg-[#259745] text-[#CCDDCF] py-2 px-4 rounded hover:bg-[#1e7e38] transition-colors duration-200 font-medium"

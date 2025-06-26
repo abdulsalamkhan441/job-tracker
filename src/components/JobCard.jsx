@@ -36,6 +36,13 @@ export default function JobCard({ job, updateJobStatus, deleteJob }) {
             </option>
           ))}
         </select>
+        {/* Optional detail question */}
+        {job.detail && (
+          <div className="mt-3 text-xs text-[#9BA8AB]">
+            <span className="font-semibold text-[#CCDDCF]">Detail:</span>{" "}
+            {job.detail}
+          </div>
+        )}
       </div>
       <button
         onClick={() => deleteJob(job.id)}

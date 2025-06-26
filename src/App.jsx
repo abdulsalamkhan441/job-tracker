@@ -66,7 +66,7 @@ export default function App() {
             (j, idx) =>
               `${idx + 1}. ${j.position} at ${j.company}${
                 j.website ? ` (applied via: ${j.website})` : ""
-              } [${j.status}]`
+              } [${j.status}]${j.detail ? ` - Detail: ${j.detail}` : ""}`
           )
           .join("\n")}
 
@@ -74,7 +74,9 @@ export default function App() {
         1. Application improvement
         2. Interview preparation
         3. Skill development
-        end the advise with a powerful motivational quote. always call him with name and introduce yourself as friday. make sure the points are solid and perfect fit 
+        4. Give me some advisees where to apply else like if he is only applying on one website you have to advise him you should try on another one 
+        5. behave like you are tony stark friday like in the movie smart and intelligent 
+        end the advise with a powerful motivational quote. always call him with name and introduce yourself as friday. make sure the points are solid and perfect fit and add this line in the end of each **friday got your back keep going** 
       `;
 
       const response = await fetch(
@@ -83,7 +85,7 @@ export default function App() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${REACT_APP_OPENAI_KEY}`,
+            Authorization: `Bearer ${openaiKey}`, // <-- use openaiKey here
           },
           body: JSON.stringify({
             model: "gpt-3.5-turbo",
@@ -96,6 +98,11 @@ export default function App() {
 
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
+      }
+
+      if (response.status === 429) {
+        setAiAdvice("You are sending requests too quickly. Please wait a moment and try again.");
+        return;
       }
 
       const data = await response.json();
