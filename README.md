@@ -1,6 +1,3 @@
-## ✅ 📋 Job Tracker App – Final README.md (Rendered Correctly)
-
-```md
 # 📋 Job Tracker App
 
 A simple yet powerful job tracking tool for developers. Add jobs, update status, and stay organized in your job hunt journey. Built with React and Tailwind CSS.
